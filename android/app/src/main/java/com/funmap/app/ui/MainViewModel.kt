@@ -1,9 +1,9 @@
-package com.askmaps.app.ui
+package com.funmap.app.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.askmaps.app.data.HealthResponse
-import com.askmaps.app.network.RetrofitModule
+import com.funmap.app.data.HealthResponse
+import com.funmap.app.network.RetrofitModule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,7 +36,7 @@ class MainViewModel : ViewModel() {
             } catch (e: Exception) {
                 _state.value =
                     MainUiState.Error(
-                        e.message ?: "Could not reach backend. Check ASKMAPS_BACKEND_URL in local.properties.",
+                        e.message ?: "Could not reach backend. Check FUNMAP_BACKEND_URL in local.properties.",
                     )
             }
         }

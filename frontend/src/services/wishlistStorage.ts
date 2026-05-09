@@ -1,7 +1,7 @@
 import type { WishlistEntry } from "../types/wishlist";
 import type { RecommendationItem } from "../types/recommendation";
 
-const STORAGE_KEY = "askmaps.wishlist.v1";
+const STORAGE_KEY = "funmap.wishlist.v1";
 
 export function loadWishlist(): WishlistEntry[] {
   try {

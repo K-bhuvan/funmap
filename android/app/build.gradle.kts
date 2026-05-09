@@ -13,16 +13,16 @@ if (localFile.exists()) {
 }
 
 val backendBaseUrl: String =
-    (localProperties.getProperty("ASKMAPS_BACKEND_URL") ?: "http://10.0.2.2:8080/")
+    (localProperties.getProperty("FUNMAP_BACKEND_URL") ?: "http://10.0.2.2:8080/")
         .trim()
         .let { if (it.endsWith("/")) it else "$it/" }
 
 android {
-    namespace = "com.askmaps.app"
+    namespace = "com.funmap.app"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.askmaps.app"
+        applicationId = "com.funmap.app"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

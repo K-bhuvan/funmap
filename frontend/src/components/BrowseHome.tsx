@@ -195,8 +195,8 @@ export default function BrowseHome({
     <div className={styles.shell}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          <div className={styles.logo}>AskMaps</div>
-          <div className={styles.tagline}>Browse like Netflix. Tap once. Open in Maps.</div>
+          <div className={styles.logo}>funmap</div>
+          <div className={styles.tagline}>Find somewhere worth going. Open in Maps.</div>
         </div>
         <div className={styles.actions}>
           <HealthStatus />

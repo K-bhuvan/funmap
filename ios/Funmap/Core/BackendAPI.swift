@@ -19,7 +19,7 @@ actor BackendAPI {
 
     init() {
         let raw =
-            Bundle.main.object(forInfoDictionaryKey: "ASKMAPS_BACKEND_URL") as? String
+            Bundle.main.object(forInfoDictionaryKey: "FUNMAP_BACKEND_URL") as? String
                 ?? "http://127.0.0.1:8080"
         let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
         let withSlash = trimmed.hasSuffix("/") ? trimmed : "\(trimmed)/"

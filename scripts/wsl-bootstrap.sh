@@ -5,7 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-echo "AskMaps WSL bootstrap — repo: $ROOT"
+echo "funmap WSL bootstrap — repo: $ROOT"
 echo "Node: $(node -v 2>/dev/null || echo 'node not found') — npm: $(npm -v 2>/dev/null || echo 'npm not found')"
 echo ""
 

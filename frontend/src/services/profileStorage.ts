@@ -1,6 +1,6 @@
 import type { UserProfile } from "../types/profile";
 
-const STORAGE_KEY = "askmaps.profile.v1";
+const STORAGE_KEY = "funmap.profile.v1";
 
 export function loadUserProfile(): UserProfile | null {
   try {

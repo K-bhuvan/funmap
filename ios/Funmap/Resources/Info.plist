@@ -16,7 +16,7 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>ASKMAPS_BACKEND_URL</key>
+	<key>FUNMAP_BACKEND_URL</key>
 	<string>http://127.0.0.1:8080</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

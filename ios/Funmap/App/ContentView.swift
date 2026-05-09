@@ -5,7 +5,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("AskMaps")
+            Text("funmap")
                 .font(.largeTitle.bold())
             Text(backendURLLine)
                 .font(.footnote)
@@ -41,7 +41,7 @@ struct ContentView: View {
 
     private var backendURLLine: String {
         let raw =
-            Bundle.main.object(forInfoDictionaryKey: "ASKMAPS_BACKEND_URL") as? String
+            Bundle.main.object(forInfoDictionaryKey: "FUNMAP_BACKEND_URL") as? String
                 ?? "http://127.0.0.1:8080"
         return "Native iOS · mobile-first\nBackend: \(raw)"
     }

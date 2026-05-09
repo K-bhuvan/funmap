@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct AskMapsApp: App {
+struct FunmapApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

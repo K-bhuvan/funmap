@@ -1,4 +1,4 @@
-package com.askmaps.app.ui.theme
+package com.funmap.app.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +28,7 @@ private val LightColors =
     )
 
 @Composable
-fun AskMapsTheme(
+fun FunmapTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

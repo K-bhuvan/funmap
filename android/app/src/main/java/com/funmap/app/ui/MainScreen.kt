@@ -1,6 +1,6 @@
-package com.askmaps.app.ui
+package com.funmap.app.ui
 
-import com.askmaps.app.BuildConfig
+import com.funmap.app.BuildConfig
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -32,7 +32,7 @@ fun MainScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "AskMaps",
+            text = "funmap",
             style = androidx.compose.material3.MaterialTheme.typography.headlineMedium,
         )
         Text(

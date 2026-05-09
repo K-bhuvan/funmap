@@ -123,7 +123,7 @@ See [`android/README.md`](android/README.md) for full setup.
 **Summary:**
 1. Open the `android/` folder in Android Studio.
 2. Copy `android/local.properties.example` → `android/local.properties`.
-3. Set `ASKMAPS_BACKEND_URL=http://<your-local-ip>:8080` (use your machine's LAN IP, not `localhost`).
+3. Set `FUNMAP_BACKEND_URL=http://<your-local-ip>:8080` (use your machine's LAN IP, not `localhost`).
 4. Run on an emulator or physical device.
 
 ### iOS

@@ -1,6 +1,6 @@
-package com.askmaps.app.network
+package com.funmap.app.network
 
-import com.askmaps.app.BuildConfig
+import com.funmap.app.BuildConfig
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -15,9 +15,9 @@ object RetrofitModule {
             .addLast(KotlinJsonAdapterFactory())
             .build()
 
-    val api: AskMapsApi by lazy { createApi() }
+    val api: FunmapApi by lazy { createApi() }
 
-    private fun createApi(): AskMapsApi {
+    private fun createApi(): FunmapApi {
         val logging =
             HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BASIC
@@ -34,6 +34,6 @@ object RetrofitModule {
             .client(client)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
-            .create(AskMapsApi::class.java)
+            .create(FunmapApi::class.java)
     }
 }

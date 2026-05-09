@@ -34,7 +34,7 @@ export async function geocodePostalCode(
   const url = `${NOMINATIM}?${params.toString()}`;
   const userAgent =
     process.env.NOMINATIM_USER_AGENT ??
-    "AskMaps/0.1 (development; configure NOMINATIM_USER_AGENT for production)";
+    "funmap/0.1 (development; configure NOMINATIM_USER_AGENT for production)";
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 12_000);

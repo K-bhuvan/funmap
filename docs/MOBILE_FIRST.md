@@ -1,6 +1,6 @@
-# Mobile-first engineering (AskMaps)
+# Mobile-first engineering (funmap)
 
-This repo follows **[first_principles_mobile_app.md](../first_principles_mobile_app.md)** as the quality bar and **[PRD.md](../PRD.md)** as the product direction.
+This repo ships native Android and iOS clients backed by a shared API.
 
 ## What we ship
 

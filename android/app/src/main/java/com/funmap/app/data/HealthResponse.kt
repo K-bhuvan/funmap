@@ -1,4 +1,4 @@
-package com.askmaps.app.data
+package com.funmap.app.data
 
 data class HealthResponse(
     val service: String,

@@ -9,11 +9,11 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_layer"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AskMaps">
+        android:theme="@style/Theme.funmap">
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.AskMaps">
+            android:theme="@style/Theme.funmap">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

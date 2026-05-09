@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AskMaps"
+rootProject.name = "funmap"
 include(":app")
