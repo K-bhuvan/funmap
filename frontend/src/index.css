@@ -6,6 +6,27 @@
   padding: 0;
 }
 
+:root {
+  /* Base palette */
+  --bg-base:      #141414;
+  --bg-card:      #1f1f23;
+  --bg-card-hover: #28282e;
+  --bg-surface:   #0e0e12;
+
+  /* Text */
+  --text-primary:   #ffffff;
+  --text-secondary: #b3b3b3;
+  --text-tertiary:  #737373;
+
+  /* Borders */
+  --border-subtle:  rgba(255, 255, 255, 0.1);
+  --border-visible: rgba(255, 255, 255, 0.18);
+
+  /* Accent */
+  --accent:         #e50914;
+  --accent-muted:   rgba(229, 9, 20, 0.18);
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -16,10 +37,11 @@ body {
   min-height: 100dvh;
   overflow: hidden;
   font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #101012;
+  background: var(--bg-base);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.06);
+  -webkit-tap-highlight-color: transparent;
 }
 
 #root {
@@ -29,13 +51,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }

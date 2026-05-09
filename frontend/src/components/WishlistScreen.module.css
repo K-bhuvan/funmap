@@ -6,23 +6,26 @@
 }
 
 .header {
-  padding: 16px 18px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   flex-shrink: 0;
+  background: rgba(14, 14, 18, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .title {
   margin: 0;
   font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #fafafa;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
 }
 
 .subtitle {
-  margin: 6px 0 0 0;
+  margin: 5px 0 0 0;
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  color: #9ca3af;
   line-height: 1.4;
 }
 
@@ -34,19 +37,20 @@
 }
 
 .empty {
-  margin: 24px 0 0 0;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.5;
+  margin: 48px 0 0 0;
+  font-size: 15px;
+  color: #71717a;
+  line-height: 1.6;
   text-align: center;
 }
 
 .card {
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1f1f23;
   padding: 14px;
   margin-bottom: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
 }
 
 .cardTop {
@@ -60,59 +64,74 @@
 .name {
   font-weight: 700;
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.94);
+  color: #ffffff;
   letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .meta {
   display: flex;
   gap: 10px;
-  margin-top: 4px;
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
+  margin-top: 5px;
+  font-size: 12px;
+  color: #a1a1aa;
+  font-weight: 500;
 }
 
 .removeBtn {
   flex-shrink: 0;
-  min-height: 36px;
+  min-height: 34px;
   padding: 0 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
   background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.85);
+  color: #d4d4d8;
   font-family: inherit;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+
+.removeBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.removeBtn:active {
+  transform: scale(0.96);
 }
 
 .mapsRow {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .mapBtn {
   flex: 1;
   min-width: 120px;
-  min-height: 44px;
+  min-height: 42px;
   padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(160, 175, 195, 0.4);
-  background: rgba(130, 155, 185, 0.15);
-  color: #f8fafc;
+  border-radius: 10px;
   font-family: inherit;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.18s ease, transform 0.12s ease;
+  transition: opacity 0.15s ease, transform 0.12s ease;
 }
 
 .mapBtn:active {
   transform: scale(0.97);
-  background: rgba(130, 155, 185, 0.28);
 }
 
-.removeBtn:active {
-  background: rgba(255, 255, 255, 0.1);
+.mapBtnGoogle {
+  background: #4285f4;
+  border: none;
+  color: #ffffff;
+}
+
+.mapBtnApple {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
 }

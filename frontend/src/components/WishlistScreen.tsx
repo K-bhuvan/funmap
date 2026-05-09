@@ -45,14 +45,14 @@ export default function WishlistScreen({ entries, onRemove }: Props) {
               <div className={styles.mapsRow}>
                 <button
                   type="button"
-                  className={styles.mapBtn}
+                  className={`${styles.mapBtn} ${styles.mapBtnGoogle}`}
                   onClick={() => openGoogleMapsDirections(item.lat, item.lng)}
                 >
                   Google Maps
                 </button>
                 <button
                   type="button"
-                  className={styles.mapBtn}
+                  className={`${styles.mapBtn} ${styles.mapBtnApple}`}
                   onClick={() => openAppleMapsDirections(item.lat, item.lng)}
                 >
                   Apple Maps

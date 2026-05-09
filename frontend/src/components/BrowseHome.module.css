@@ -5,33 +5,34 @@
   grid-template-rows: auto 1fr;
 }
 
+/* ── Header ── */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   padding: 14px 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  background: rgba(18, 18, 20, 0.78);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(14, 14, 18, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .brand {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .logo {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-size: 17px;
-  color: #fafafa;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 20px;
+  color: #ffffff;
 }
 
 .tagline {
-  color: rgba(255, 255, 255, 0.55);
+  color: #9ca3af;
   font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -40,27 +41,30 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn {
-  min-height: 44px;
+  min-height: 40px;
   padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e4e4e7;
   cursor: pointer;
   font-size: 13px;
-  font-weight: 500;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.15s ease;
+  font-weight: 600;
+  font-family: inherit;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .btn:active:not(:disabled) {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .btn:disabled {
@@ -68,6 +72,7 @@
   cursor: not-allowed;
 }
 
+/* ── Scrollable feed ── */
 .content {
   display: grid;
   grid-template-columns: 1fr;
@@ -75,115 +80,47 @@
 }
 
 .feed {
-  padding: 20px 18px 32px;
+  padding: 16px 18px 32px;
   overflow: auto;
   min-height: 0;
   scroll-behavior: smooth;
 }
 
+/* ── Gate / location messaging ── */
+.gateMsg {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #9ca3af;
+  margin-bottom: 14px;
+}
+
 .locPending {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   font-size: 12px;
   font-weight: 600;
-  color: rgba(200, 215, 235, 0.95);
+  color: #c0d0e8;
 }
 
-.mapOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
-  display: grid;
-  align-items: end;
-  z-index: 50;
-}
-
-.mapSheet {
-  height: min(78vh, 720px);
-  width: 100%;
-  background: rgba(16, 16, 18, 0.96);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.35);
-}
-
-.sheetHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.sheetTitle {
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.01em;
-}
-
-.closeBtn {
-  height: 36px;
-  min-width: 44px;
-  padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.92);
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 500;
-  transition: background 0.2s ease;
-}
-
-.mapWrap {
-  height: 100%;
-  min-height: 0;
-}
-
-.notice {
-  padding: 10px 0 4px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 12px;
-  line-height: 1.45;
-}
-
-.noticeRow {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0 4px;
-}
-
-.noticeRow .notice {
-  padding: 0;
-  flex: 1;
-}
-
+/* ── Postal code panel ── */
 .postalPanel {
-  margin: 4px 0 16px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.04);
+  margin: 4px 0 20px;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .postalIntro {
-  margin: 0 0 12px 0;
+  margin: 0 0 14px 0;
   font-size: 13px;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.55;
+  color: #d1d5db;
 }
 
 .postalRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -192,30 +129,31 @@
   min-width: 0;
   min-height: 44px;
   padding: 0 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.25);
-  color: rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
   font-family: inherit;
   font-size: 14px;
 }
 
 .postalInput::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: #6b7280;
 }
 
 .postalInput:focus {
   outline: none;
-  border-color: rgba(200, 185, 160, 0.45);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 .postalSelect {
   min-height: 44px;
   padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(0, 0, 0, 0.25);
-  color: rgba(255, 255, 255, 0.92);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(0, 0, 0, 0.3);
+  color: #ffffff;
   font-family: inherit;
   font-size: 13px;
 }
@@ -223,15 +161,20 @@
 .postalSubmit {
   min-height: 44px;
   padding: 0 18px;
-  border-radius: 12px;
-  border: 1px solid rgba(160, 175, 195, 0.45);
-  background: rgba(130, 155, 185, 0.22);
-  color: #f8fafc;
+  border-radius: 10px;
+  border: none;
+  background: #e50914;
+  color: #ffffff;
   font-family: inherit;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
+  letter-spacing: 0.01em;
+  transition: opacity 0.15s ease;
+}
+
+.postalSubmit:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
 .postalSubmit:disabled {
@@ -242,27 +185,111 @@
 .postalError {
   margin: 10px 0 0 0;
   font-size: 12px;
-  color: #fecaca;
+  font-weight: 600;
+  color: #fca5a5;
 }
 
 .postalChange {
   flex-shrink: 0;
   min-height: 36px;
   padding: 0 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.88);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.07);
+  color: #d4d4d8;
   font-family: inherit;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: background 0.15s ease;
 }
 
-@media (max-width: 980px) {
-  .content {
-    grid-template-columns: 1fr;
-  }
+.postalChange:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
+/* ── Inline notices ── */
+.notice {
+  padding: 8px 0 4px;
+  color: #9ca3af;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.noticeRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0 4px;
+}
+
+.noticeRow .notice {
+  padding: 0;
+  flex: 1;
+}
+
+/* ── Map overlay sheet ── */
+.mapOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  display: grid;
+  align-items: end;
+  z-index: 50;
+}
+
+.mapSheet {
+  height: min(78vh, 720px);
+  width: 100%;
+  background: #18181b;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.5);
+}
+
+.sheetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sheetTitle {
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.closeBtn {
+  height: 36px;
+  min-width: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.07);
+  color: #e4e4e7;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: background 0.18s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mapWrap {
+  height: 100%;
+  min-height: 0;
+}

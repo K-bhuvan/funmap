@@ -1,122 +1,199 @@
+/* ── Card shell ── */
 .tile {
-  width: 260px;
-  min-width: 260px;
+  width: 220px;
+  min-width: 220px;
   scroll-snap-align: start;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.035);
-  padding: 14px;
-  display: grid;
-  gap: 10px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1f1f23;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .tile:hover {
-  border-color: rgba(200, 195, 185, 0.25);
-  background: rgba(255, 255, 255, 0.055);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+  transform: scale(1.02);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.55);
 }
 
-.nameRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: flex-start;
+.tileSelected {
+  border-color: rgba(229, 9, 20, 0.7);
+  box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.35), 0 8px 32px rgba(0, 0, 0, 0.55);
 }
 
-.nameRowActions {
+/* ── Thumbnail area ── */
+.thumb {
+  position: relative;
+  height: 110px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  overflow: hidden;
   flex-shrink: 0;
 }
 
+.thumbEmoji {
+  font-size: 44px;
+  line-height: 1;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  user-select: none;
+}
+
+.thumbFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, #1f1f23);
+  pointer-events: none;
+}
+
+/* Rating badge — top left */
+.ratingBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+}
+
+.ratingStars {
+  color: #fbbf24;
+  font-size: 11px;
+}
+
+/* Wishlist — top right */
 .wishlistBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 18px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 16px;
   line-height: 1;
   cursor: pointer;
-  font-family: inherit;
-  padding: 0;
   display: grid;
   place-items: center;
+  backdrop-filter: blur(4px);
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease;
+}
+
+.wishlistBtn:active {
+  transform: scale(0.9);
 }
 
 .wishlistBtnOn {
-  border-color: rgba(244, 114, 182, 0.5);
-  background: rgba(244, 114, 182, 0.12);
-  color: #f9a8d4;
+  border-color: #f43f5e;
+  background: rgba(244, 63, 94, 0.25);
+  color: #fb7185;
+}
+
+/* ── Card body ── */
+.body {
+  padding: 12px 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
 }
 
 .name {
+  font-size: 14px;
   font-weight: 700;
+  color: #ffffff;
   letter-spacing: -0.01em;
-}
-
-.rating {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 13px;
-  white-space: nowrap;
+  line-height: 1.25;
 }
 
 .meta {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 13px;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.categoryTag {
+  font-size: 11px;
+  font-weight: 600;
+  color: #a1a1aa;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.distance {
+  font-size: 11px;
+  color: #a1a1aa;
+  font-weight: 500;
 }
 
 .reason {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 13px;
-  line-height: 1.35;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #d4d4d8;
   margin: 0;
-  min-height: 36px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
 }
 
-.mapsActions {
+/* ── Map action buttons ── */
+.actions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-top: 2px;
+  gap: 6px;
+  margin-top: 4px;
 }
 
 .btn {
-  min-height: 40px;
   width: 100%;
-  padding: 0 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.92);
-  cursor: pointer;
+  min-height: 38px;
+  padding: 0 10px;
+  border-radius: 8px;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   font-family: inherit;
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s ease, transform 0.12s ease;
 }
 
 .btn:active {
   transform: scale(0.97);
+  opacity: 0.85;
 }
 
-.btnPrimary {
-  border-color: rgba(180, 175, 165, 0.45);
-  background: rgba(165, 175, 190, 0.18);
+.btnGoogle {
+  background: #4285f4;
+  border: none;
+  color: #ffffff;
 }
 
-.btnSecondary {
-  border-color: rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.05);
+.btnApple {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
-
