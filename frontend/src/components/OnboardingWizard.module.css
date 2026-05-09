@@ -200,6 +200,40 @@
   color: #71717a;
 }
 
+/* ── Distance unit segmented control ── */
+.unitToggle {
+  display: flex;
+  gap: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+  margin-bottom: 18px;
+  width: fit-content;
+}
+
+.unitBtn {
+  flex: 1;
+  min-height: 42px;
+  padding: 0 24px;
+  border: none;
+  background: rgba(255, 255, 255, 0.04);
+  color: #a1a1aa;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.unitBtn + .unitBtn {
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.unitBtnActive {
+  background: #e50914;
+  color: #ffffff;
+}
+
 @media (max-width: 720px) {
   .row { grid-template-columns: 1fr 1fr; }
 }

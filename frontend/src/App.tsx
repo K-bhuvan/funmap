@@ -38,6 +38,7 @@ export default function App() {
               afterWorkTime: "60-90",
               weekendTime: "90-150",
               driveTolerance: "20",
+              distanceUnit: "miles",
               createdAt: new Date().toISOString(),
               updatedAt: new Date().toISOString(),
             });
@@ -59,7 +60,11 @@ export default function App() {
             onToggleWishlist={wishlist.toggle}
           />
         ) : (
-          <WishlistScreen entries={wishlist.entries} onRemove={wishlist.remove} />
+          <WishlistScreen
+            entries={wishlist.entries}
+            onRemove={wishlist.remove}
+            distanceUnit={profile.distanceUnit ?? "miles"}
+          />
         )}
       </div>
       <nav className={styles.bottomNav} aria-label="Main">

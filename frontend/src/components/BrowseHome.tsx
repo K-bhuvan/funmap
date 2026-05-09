@@ -311,6 +311,7 @@ export default function BrowseHome({
                     onToggleWishlist={onToggleWishlist}
                     onOpenGoogleMaps={handleOpenGoogleMaps}
                     onOpenAppleMaps={handleOpenAppleMaps}
+                    distanceUnit={profile.distanceUnit ?? "miles"}
                   />
                 );
               })

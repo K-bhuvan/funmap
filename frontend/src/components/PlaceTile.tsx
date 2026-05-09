@@ -1,4 +1,6 @@
+import type { DistanceUnit } from "../types/profile";
 import type { RecommendationItem } from "../types/recommendation";
+import { formatDistance } from "../utils/distance";
 import styles from "./PlaceTile.module.css";
 
 type Props = {
@@ -9,11 +11,8 @@ type Props = {
   onToggleWishlist?: (item: RecommendationItem) => void;
   onOpenGoogleMaps?: (item: RecommendationItem) => void;
   onOpenAppleMaps?: (item: RecommendationItem) => void;
+  distanceUnit?: DistanceUnit;
 };
-
-function formatDistance(meters: number): string {
-  return meters >= 1000 ? `${(meters / 1000).toFixed(1)} km` : `${meters} m`;
-}
 
 type ThumbStyle = { gradient: string; emoji: string };
 
@@ -48,6 +47,7 @@ export default function PlaceTile({
   onToggleWishlist,
   onOpenGoogleMaps,
   onOpenAppleMaps,
+  distanceUnit = "miles",
 }: Props) {
   const thumb = thumbStyle(item.category);
 
@@ -91,7 +91,7 @@ export default function PlaceTile({
 
         <div className={styles.meta}>
           <span className={styles.categoryTag}>{item.category}</span>
-          <span className={styles.distance}>{formatDistance(item.distanceMeters)}</span>
+          <span className={styles.distance}>{formatDistance(item.distanceMeters, distanceUnit)}</span>
         </div>
 
         <p className={styles.reason}>{item.reason}</p>

@@ -1,3 +1,4 @@
+import type { DistanceUnit } from "../types/profile";
 import type { RecommendationItem } from "../types/recommendation";
 import PlaceTile from "./PlaceTile";
 import styles from "./FeedRow.module.css";
@@ -13,6 +14,7 @@ type Props = {
   onToggleWishlist?: (item: RecommendationItem) => void;
   onOpenGoogleMaps?: (item: RecommendationItem) => void;
   onOpenAppleMaps?: (item: RecommendationItem) => void;
+  distanceUnit?: DistanceUnit;
 };
 
 export default function FeedRow({
@@ -26,6 +28,7 @@ export default function FeedRow({
   onToggleWishlist,
   onOpenGoogleMaps,
   onOpenAppleMaps,
+  distanceUnit = "miles",
 }: Props) {
   return (
     <section className={styles.row}>
@@ -44,6 +47,7 @@ export default function FeedRow({
               onToggleWishlist={onToggleWishlist}
               onOpenGoogleMaps={onOpenGoogleMaps}
               onOpenAppleMaps={onOpenAppleMaps}
+              distanceUnit={distanceUnit}
             />
           ))}
         </div>

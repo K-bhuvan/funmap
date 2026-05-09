@@ -1,17 +1,16 @@
 import { openAppleMapsDirections, openGoogleMapsDirections } from "../utils/maps";
+import type { DistanceUnit } from "../types/profile";
 import type { WishlistEntry } from "../types/wishlist";
+import { formatDistance } from "../utils/distance";
 import styles from "./WishlistScreen.module.css";
 
 type Props = {
   entries: WishlistEntry[];
   onRemove: (placeId: string) => void;
+  distanceUnit?: DistanceUnit;
 };
 
-function formatDistance(meters: number): string {
-  return meters >= 1000 ? `${(meters / 1000).toFixed(1)} km` : `${meters} m`;
-}
-
-export default function WishlistScreen({ entries, onRemove }: Props) {
+export default function WishlistScreen({ entries, onRemove, distanceUnit = "miles" }: Props) {
   return (
     <div className={styles.shell}>
       <header className={styles.header}>
@@ -30,7 +29,7 @@ export default function WishlistScreen({ entries, onRemove }: Props) {
                   <div className={styles.name}>{item.name}</div>
                   <div className={styles.meta}>
                     <span>{item.category}</span>
-                    <span>{formatDistance(item.distanceMeters)}</span>
+                    <span>{formatDistance(item.distanceMeters, distanceUnit)}</span>
                   </div>
                 </div>
                 <button

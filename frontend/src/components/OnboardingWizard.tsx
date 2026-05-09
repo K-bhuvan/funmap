@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import type { DriveTolerance, TimeBudget, UserProfile, Vibe } from "../types/profile";
+import type { DistanceUnit, DriveTolerance, TimeBudget, UserProfile, Vibe } from "../types/profile";
 import styles from "./OnboardingWizard.module.css";
 
 type Props = {
@@ -50,6 +50,7 @@ export default function OnboardingWizard({ onComplete, onSkip }: Props) {
   const [afterWorkTime, setAfterWorkTime] = useState<TimeBudget>("60-90");
   const [weekendTime, setWeekendTime] = useState<TimeBudget>("90-150");
   const [driveTolerance, setDriveTolerance] = useState<DriveTolerance>("20");
+  const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>("miles");
   const [vibe, setVibe] = useState<Vibe | "">("");
 
   const canContinueFromStep1 = activities.length >= 3;
@@ -84,6 +85,7 @@ export default function OnboardingWizard({ onComplete, onSkip }: Props) {
       afterWorkTime,
       weekendTime,
       driveTolerance,
+      distanceUnit,
       vibe: vibe === "" ? undefined : (vibe as Vibe),
       createdAt: now,
       updatedAt: now,
@@ -187,6 +189,21 @@ export default function OnboardingWizard({ onComplete, onSkip }: Props) {
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div className={styles.sectionLabel}>Distance unit</div>
+            <div className={styles.unitToggle}>
+              {(["miles", "km"] as DistanceUnit[]).map((u) => (
+                <button
+                  key={u}
+                  type="button"
+                  className={`${styles.unitBtn} ${distanceUnit === u ? styles.unitBtnActive : ""}`}
+                  onClick={() => setDistanceUnit(u)}
+                  aria-pressed={distanceUnit === u}
+                >
+                  {u === "miles" ? "Miles" : "Kilometers"}
+                </button>
+              ))}
             </div>
           </>
         )}
