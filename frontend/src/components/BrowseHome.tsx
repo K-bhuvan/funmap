@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import type { QueryMode, RecommendationItem, RecommendationResponse } from "../types/recommendation";
 import type { UserProfile } from "../types/profile";
+import type { LocationSession } from "../hooks/useLocationSession";
 import HealthStatus from "./HealthStatus";
 import FeedRow from "./FeedRow";
 import MapView from "./MapView";
-import { useUserLocation, type LatLng } from "../hooks/useUserLocation";
 import { openAppleMapsDirections, openGoogleMapsDirections } from "../utils/maps";
 import styles from "./BrowseHome.module.css";
 
@@ -26,6 +26,7 @@ type Props = {
   onEditProfile: () => void;
   wishlistIds: Set<string>;
   onToggleWishlist: (item: RecommendationItem) => void;
+  session: LocationSession;
 };
 
 function buildRows(profile: UserProfile, isWeekend: boolean): RowSpec[] {
@@ -51,59 +52,16 @@ export default function BrowseHome({
   onEditProfile,
   wishlistIds,
   onToggleWishlist,
+  session,
 }: Props) {
-  const locationState = useUserLocation();
+  const {
+    locationState,
+    effectiveCoords,
+    postalLocation,
+    clearPostalLocation,
+  } = session;
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null);
   const [mapOpen, setMapOpen] = useState(false);
-  const [postalLocation, setPostalLocation] = useState<{ coords: LatLng; summary: string } | null>(null);
-  const [postalCodeInput, setPostalCodeInput] = useState("");
-  const [countryCodeInput, setCountryCodeInput] = useState("US");
-  const [postalError, setPostalError] = useState<string | null>(null);
-  const [postalLoading, setPostalLoading] = useState(false);
-
-  const effectiveCoords: LatLng | null = useMemo(
-    () =>
-      locationState.status === "granted" ? locationState.coords : postalLocation?.coords ?? null,
-    [locationState, postalLocation],
-  );
-
-  async function applyPostal() {
-    setPostalError(null);
-    setPostalLoading(true);
-    try {
-      const res = await fetch("/v1/geocode/postal", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          postalCode: postalCodeInput.trim(),
-          countryCode: countryCodeInput,
-        }),
-      });
-      const json: unknown = await res.json();
-      if (!res.ok) {
-        const err = json as { message?: string };
-        setPostalError(err.message ?? "Could not look up that postal code.");
-        return;
-      }
-      const data = json as {
-        lat: number;
-        lng: number;
-        label?: string;
-        postalCode?: string;
-        countryCode?: string;
-      };
-      setPostalLocation({
-        coords: { lat: data.lat, lng: data.lng },
-        summary:
-          data.label ??
-          `${data.postalCode ?? postalCodeInput.trim()} (${data.countryCode ?? countryCodeInput})`,
-      });
-    } catch {
-      setPostalError("Could not reach the server.");
-    } finally {
-      setPostalLoading(false);
-    }
-  }
 
   const isWeekend = useMemo(() => {
     const d = new Date();
@@ -208,53 +166,10 @@ export default function BrowseHome({
       <div className={styles.content}>
         <div className={styles.feed}>
           {!effectiveCoords ? (
-            <div className={styles.postalPanel}>
-              {locationState.status === "pending" ? (
-                <p className={styles.locPending}>Checking location permission…</p>
-              ) : null}
-              <p className={styles.postalIntro}>
-                {locationState.status === "pending"
-                  ? "Allow precise location when prompted, or enter your postal code below."
-                  : locationState.status === "denied"
-                    ? "Enter your postal code below to see picks near that area."
-                    : "Enter your postal code to load recommendations."}
-              </p>
-              <div className={styles.postalRow}>
-                <input
-                  className={styles.postalInput}
-                  type="text"
-                  name="postal-code"
-                  autoComplete="postal-code"
-                  placeholder="e.g. 90210"
-                  value={postalCodeInput}
-                  onChange={(e) => setPostalCodeInput(e.target.value)}
-                  maxLength={16}
-                  aria-label="Postal or ZIP code"
-                />
-                <select
-                  className={styles.postalSelect}
-                  value={countryCodeInput}
-                  onChange={(e) => setCountryCodeInput(e.target.value)}
-                  aria-label="Country"
-                >
-                  <option value="US">United States</option>
-                  <option value="IN">India</option>
-                  <option value="CA">Canada</option>
-                  <option value="GB">United Kingdom</option>
-                  <option value="AU">Australia</option>
-                  <option value="DE">Germany</option>
-                </select>
-                <button
-                  type="button"
-                  className={styles.postalSubmit}
-                  onClick={() => void applyPostal()}
-                  disabled={postalLoading || postalCodeInput.trim().length < 2}
-                >
-                  {postalLoading ? "…" : "Apply"}
-                </button>
-              </div>
-              {postalError ? <p className={styles.postalError}>{postalError}</p> : null}
-            </div>
+            <p className={styles.needsLocationHint}>
+              Use the <strong>ZIP / postal code</strong> bar at the top of the screen, or allow precise location when
+              prompted.
+            </p>
           ) : null}
 
           {locationState.status === "granted" ? (
@@ -276,8 +191,7 @@ export default function BrowseHome({
                 type="button"
                 className={styles.postalChange}
                 onClick={() => {
-                  setPostalLocation(null);
-                  setPostalError(null);
+                  clearPostalLocation();
                 }}
               >
                 Change

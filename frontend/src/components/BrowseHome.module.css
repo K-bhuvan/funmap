@@ -86,6 +86,17 @@
   scroll-behavior: smooth;
 }
 
+.needsLocationHint {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #9ca3af;
+  margin: 0 0 16px;
+}
+
+.needsLocationHint strong {
+  color: #e5e7eb;
+}
+
 /* ── Gate / location messaging ── */
 .gateMsg {
   font-size: 13px;

@@ -1,63 +1,35 @@
 import { useEffect, useState } from "react";
 import BrowseHome from "./components/BrowseHome";
 import OnboardingWizard from "./components/OnboardingWizard";
+import PostalLocationGate from "./components/PostalLocationGate";
 import WishlistScreen from "./components/WishlistScreen";
+import { useLocationSession } from "./hooks/useLocationSession";
+import { useWishlist } from "./hooks/useWishlist";
 import type { UserProfile } from "./types/profile";
 import { clearUserProfile, loadUserProfile, saveUserProfile } from "./services/profileStorage";
-import { useWishlist } from "./hooks/useWishlist";
 import styles from "./App.module.css";
 
 type MainTab = "home" | "wishlist";
 
-export default function App() {
-  const [profile, setProfile] = useState<UserProfile | null>(null);
-  const [editingProfile, setEditingProfile] = useState(false);
+/** Main shell after onboarding — location + wishlist hooks live here so we don’t prompt for GPS during onboarding. */
+function MainApp({ profile, onEditProfile }: { profile: UserProfile; onEditProfile: () => void }) {
   const [mainTab, setMainTab] = useState<MainTab>("home");
   const wishlist = useWishlist();
-
-  useEffect(() => {
-    setProfile(loadUserProfile());
-  }, []);
-
-  function handleComplete(next: UserProfile) {
-    saveUserProfile(next);
-    setProfile(next);
-    setEditingProfile(false);
-  }
-
-  if (!profile || editingProfile) {
-    return (
-      <div className={styles.appRoot}>
-        <OnboardingWizard
-          onComplete={handleComplete}
-          onSkip={() => {
-            clearUserProfile();
-            setProfile({
-              version: 1,
-              activities: ["Walk", "Coffee", "Sunset"],
-              afterWorkTime: "60-90",
-              weekendTime: "90-150",
-              driveTolerance: "20",
-              distanceUnit: "miles",
-              createdAt: new Date().toISOString(),
-              updatedAt: new Date().toISOString(),
-            });
-            setEditingProfile(false);
-          }}
-        />
-      </div>
-    );
-  }
+  const locationSession = useLocationSession();
 
   return (
     <div className={styles.appRoot}>
+      {!locationSession.effectiveCoords ? (
+        <PostalLocationGate session={locationSession} />
+      ) : null}
       <div className={styles.appBody}>
         {mainTab === "home" ? (
           <BrowseHome
             profile={profile}
-            onEditProfile={() => setEditingProfile(true)}
+            onEditProfile={onEditProfile}
             wishlistIds={wishlist.ids}
             onToggleWishlist={wishlist.toggle}
+            session={locationSession}
           />
         ) : (
           <WishlistScreen
@@ -94,4 +66,45 @@ export default function App() {
       </nav>
     </div>
   );
+}
+
+export default function App() {
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [editingProfile, setEditingProfile] = useState(false);
+
+  useEffect(() => {
+    setProfile(loadUserProfile());
+  }, []);
+
+  function handleComplete(next: UserProfile) {
+    saveUserProfile(next);
+    setProfile(next);
+    setEditingProfile(false);
+  }
+
+  if (!profile || editingProfile) {
+    return (
+      <div className={styles.appRoot}>
+        <OnboardingWizard
+          onComplete={handleComplete}
+          onSkip={() => {
+            clearUserProfile();
+            setProfile({
+              version: 1,
+              activities: ["Walk", "Coffee", "Sunset"],
+              afterWorkTime: "60-90",
+              weekendTime: "90-150",
+              driveTolerance: "20",
+              distanceUnit: "miles",
+              createdAt: new Date().toISOString(),
+              updatedAt: new Date().toISOString(),
+            });
+            setEditingProfile(false);
+          }}
+        />
+      </div>
+    );
+  }
+
+  return <MainApp profile={profile} onEditProfile={() => setEditingProfile(true)} />;
 }
