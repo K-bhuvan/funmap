@@ -6,7 +6,7 @@ import WishlistScreen from "./components/WishlistScreen";
 import { useLocationSession } from "./hooks/useLocationSession";
 import { useWishlist } from "./hooks/useWishlist";
 import type { UserProfile } from "./types/profile";
-import { clearUserProfile, loadUserProfile, saveUserProfile } from "./services/profileStorage";
+import { loadUserProfile, saveUserProfile } from "./services/profileStorage";
 import styles from "./App.module.css";
 
 type MainTab = "home" | "wishlist";
@@ -86,10 +86,11 @@ export default function App() {
     return (
       <div className={styles.appRoot}>
         <OnboardingWizard
+          key={profile && editingProfile ? `edit-${profile.updatedAt}` : "first-run"}
+          initialProfile={profile && editingProfile ? profile : null}
           onComplete={handleComplete}
           onSkip={() => {
-            clearUserProfile();
-            setProfile({
+            const defaultProfile: UserProfile = {
               version: 1,
               activities: ["Walk", "Coffee", "Sunset"],
               afterWorkTime: "60-90",
@@ -98,7 +99,9 @@ export default function App() {
               distanceUnit: "miles",
               createdAt: new Date().toISOString(),
               updatedAt: new Date().toISOString(),
-            });
+            };
+            saveUserProfile(defaultProfile);
+            setProfile(defaultProfile);
             setEditingProfile(false);
           }}
         />

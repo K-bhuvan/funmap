@@ -1,4 +1,4 @@
-import type { UserProfile } from "../types/profile";
+import type { DistanceUnit, UserProfile } from "../types/profile";
 
 const STORAGE_KEY = "funmap.profile.v1";
 
@@ -16,7 +16,25 @@ export function loadUserProfile(): UserProfile | null {
     if (typeof maybe.driveTolerance !== "string") return null;
     if (typeof maybe.createdAt !== "string") return null;
     if (typeof maybe.updatedAt !== "string") return null;
-    return maybe as UserProfile;
+
+    const distanceUnit: DistanceUnit = maybe.distanceUnit === "km" ? "km" : "miles";
+    const profile: UserProfile = {
+      version: 1,
+      activities: maybe.activities,
+      afterWorkTime: maybe.afterWorkTime as UserProfile["afterWorkTime"],
+      weekendTime: maybe.weekendTime as UserProfile["weekendTime"],
+      driveTolerance: maybe.driveTolerance as UserProfile["driveTolerance"],
+      distanceUnit,
+      vibe: maybe.vibe,
+      createdAt: maybe.createdAt,
+      updatedAt: maybe.updatedAt,
+    };
+
+    if (maybe.distanceUnit !== "km" && maybe.distanceUnit !== "miles") {
+      saveUserProfile(profile);
+    }
+
+    return profile;
   } catch {
     return null;
   }

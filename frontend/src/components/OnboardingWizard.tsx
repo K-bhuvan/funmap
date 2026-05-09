@@ -5,6 +5,8 @@ import styles from "./OnboardingWizard.module.css";
 type Props = {
   onComplete: (profile: UserProfile) => void;
   onSkip?: () => void;
+  /** When editing preferences, seed form from existing profile */
+  initialProfile?: UserProfile | null;
 };
 
 const DEFAULT_ACTIVITIES = [
@@ -43,15 +45,23 @@ const VIBE_OPTIONS: Array<{ value: Vibe; label: string }> = [
   { value: "adventurous", label: "Adventurous" },
 ];
 
-export default function OnboardingWizard({ onComplete, onSkip }: Props) {
+export default function OnboardingWizard({ onComplete, onSkip, initialProfile = null }: Props) {
   const [step, setStep] = useState<1 | 2>(1);
 
-  const [activities, setActivities] = useState<string[]>([]);
-  const [afterWorkTime, setAfterWorkTime] = useState<TimeBudget>("60-90");
-  const [weekendTime, setWeekendTime] = useState<TimeBudget>("90-150");
-  const [driveTolerance, setDriveTolerance] = useState<DriveTolerance>("20");
-  const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>("miles");
-  const [vibe, setVibe] = useState<Vibe | "">("");
+  const [activities, setActivities] = useState<string[]>(() => initialProfile?.activities.slice() ?? []);
+  const [afterWorkTime, setAfterWorkTime] = useState<TimeBudget>(
+    () => initialProfile?.afterWorkTime ?? "60-90",
+  );
+  const [weekendTime, setWeekendTime] = useState<TimeBudget>(
+    () => initialProfile?.weekendTime ?? "90-150",
+  );
+  const [driveTolerance, setDriveTolerance] = useState<DriveTolerance>(
+    () => initialProfile?.driveTolerance ?? "20",
+  );
+  const [distanceUnit, setDistanceUnit] = useState<DistanceUnit>(
+    () => initialProfile?.distanceUnit ?? "miles",
+  );
+  const [vibe, setVibe] = useState<Vibe | "">(() => initialProfile?.vibe ?? "");
 
   const canContinueFromStep1 = activities.length >= 3;
 
@@ -87,7 +97,7 @@ export default function OnboardingWizard({ onComplete, onSkip }: Props) {
       driveTolerance,
       distanceUnit,
       vibe: vibe === "" ? undefined : (vibe as Vibe),
-      createdAt: now,
+      createdAt: initialProfile?.createdAt ?? now,
       updatedAt: now,
     };
     onComplete(profile);
