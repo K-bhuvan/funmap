@@ -1,6 +1,6 @@
 # funmap
 
-> Discover places worth leaving home for — browse like Netflix, tap once, open in Google Maps or Apple Maps.
+> Discover places worth leaving home for. Scroll, find something you like, and go.
 
 **funmap** is a personal local discovery app that recommends nearby places based on your taste, mood, time, and location. No more typing queries into a search box — just scroll, heart what looks good, and go.
 
