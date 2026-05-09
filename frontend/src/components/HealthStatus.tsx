@@ -3,12 +3,7 @@ import styles from "./HealthStatus.module.css";
 
 type Status = "checking" | "ok" | "error";
 
-const LABEL: Record<Status, string> = {
-  checking: "connecting…",
-  ok: "backend connected",
-  error: "backend offline",
-};
-
+/** Only surfaces problems — healthy state stays invisible (normal for shipped apps). */
 export default function HealthStatus() {
   const [status, setStatus] = useState<Status>("checking");
 
@@ -18,9 +13,11 @@ export default function HealthStatus() {
       .catch(() => setStatus("error"));
   }, []);
 
+  if (status !== "error") return null;
+
   return (
-    <span className={`${styles.badge} ${styles[status]}`}>
-      {LABEL[status]}
+    <span className={`${styles.badge} ${styles.error}`} role="status">
+      Can&apos;t connect — try again in a moment.
     </span>
   );
 }
