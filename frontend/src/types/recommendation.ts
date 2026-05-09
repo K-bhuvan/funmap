@@ -16,7 +16,7 @@ export type RecommendationResponse = {
   sessionId: string;
   query: string;
   mode: QueryMode;
-  location: { lat: number; lng: number } | null;
+  location: { lat: number; lng: number };
   recommendations: RecommendationItem[];
   meta: { mocked: boolean; generatedAt: string };
 };

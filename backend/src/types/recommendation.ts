@@ -6,7 +6,7 @@ export type QueryRequestBody = {
   location: {
     lat: number;
     lng: number;
-  } | null;
+  };
 };
 
 export type RecommendationItem = {

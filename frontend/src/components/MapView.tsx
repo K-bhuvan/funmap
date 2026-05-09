@@ -2,12 +2,10 @@ import { useEffect } from "react";
 import { CircleMarker, MapContainer, Popup, TileLayer, useMap } from "react-leaflet";
 import type { RecommendationItem } from "../types/recommendation";
 
-// Default map center when no user location is passed in (no GPS / postal yet); aligns with backend mock default
-const DEFAULT_CENTER: [number, number] = [12.9716, 77.5946];
 const DEFAULT_ZOOM = 13;
 
 interface Props {
-  center?: [number, number];
+  center: [number, number];
   recommendations?: RecommendationItem[];
   selectedPlaceId?: string | null;
   onSelectPlace?: (placeId: string | null) => void;
@@ -30,7 +28,7 @@ export default function MapView({
 }: Props) {
   return (
     <MapContainer
-      center={DEFAULT_CENTER}
+      center={center}
       zoom={DEFAULT_ZOOM}
       style={{ height: "100%", width: "100%" }}
     >
@@ -65,7 +63,7 @@ export default function MapView({
         );
       })}
 
-      {center && <MapFlyTo center={center} />}
+      <MapFlyTo center={center} />
     </MapContainer>
   );
 }

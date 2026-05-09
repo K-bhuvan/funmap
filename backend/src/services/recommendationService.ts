@@ -6,8 +6,6 @@ import {
   RecommendationResponse,
 } from "../types/recommendation.js";
 
-const DEFAULT_CENTER = { lat: 12.9716, lng: 77.5946 };
-
 type PlaceTemplate = {
   name: string;
   category: string;
@@ -187,7 +185,7 @@ function pickPlaces(
 }
 
 function buildMockRecommendations(input: QueryRequestBody): RecommendationItem[] {
-  const base = input.location ?? DEFAULT_CENTER;
+  const base = input.location;
   const picked = pickPlaces(input.query, input.mode, 3);
 
   return picked.map((p) => ({

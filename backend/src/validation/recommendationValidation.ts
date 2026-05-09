@@ -59,10 +59,14 @@ export function validateQueryRequest(body: unknown): ValidationResult {
     };
   }
 
-  if (typeof maybe.location !== "undefined" && maybe.location !== null && !isValidLocation(maybe.location)) {
+  if (
+    typeof maybe.location === "undefined" ||
+    maybe.location === null ||
+    !isValidLocation(maybe.location)
+  ) {
     return {
       ok: false,
-      message: "'location' must be an object with numeric 'lat' and 'lng' when provided.",
+      message: "'location' is required with numeric 'lat' and 'lng' (no default region).",
     };
   }
 
@@ -71,7 +75,7 @@ export function validateQueryRequest(body: unknown): ValidationResult {
     data: {
       query: maybe.query.trim(),
       mode,
-      location: maybe.location ?? null,
+      location: maybe.location,
     },
   };
 }

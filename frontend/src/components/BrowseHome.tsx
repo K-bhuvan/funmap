@@ -67,10 +67,6 @@ export default function BrowseHome({
     [locationState, postalLocation],
   );
 
-  const mapCenter: [number, number] | undefined = effectiveCoords
-    ? [effectiveCoords.lat, effectiveCoords.lng]
-    : undefined;
-
   async function applyPostal() {
     setPostalError(null);
     setPostalLoading(true);
@@ -218,10 +214,10 @@ export default function BrowseHome({
               ) : null}
               <p className={styles.postalIntro}>
                 {locationState.status === "pending"
-                  ? "You can wait for GPS or enter a postal code now. A postal code is required if we don’t receive your location."
+                  ? "Allow precise location when prompted, or enter your postal code below."
                   : locationState.status === "denied"
-                    ? `We don’t have your location (${locationState.reason}). Enter a postal code to continue.`
-                    : "Enter a postal code to load recommendations."}
+                    ? "Enter your postal code below to see picks near that area."
+                    : "Enter your postal code to load recommendations."}
               </p>
               <div className={styles.postalRow}>
                 <input
@@ -267,14 +263,14 @@ export default function BrowseHome({
             </div>
           ) : null}
 
-          {locationState.status === "denied" && postalLocation ? (
+          {postalLocation && locationState.status !== "granted" ? (
             <div className={styles.noticeRow}>
               <div className={styles.notice}>
-                Using area:{" "}
+                Based on your postal code:{" "}
                 {postalLocation.summary.length > 90
                   ? `${postalLocation.summary.slice(0, 90)}…`
                   : postalLocation.summary}
-                . Open directions from a card with Google Maps or Apple Maps.
+                . Open directions from a card in Google Maps or Apple Maps.
               </div>
               <button
                 type="button"
@@ -286,12 +282,6 @@ export default function BrowseHome({
               >
                 Change
               </button>
-            </div>
-          ) : null}
-
-          {locationState.status === "pending" && postalLocation && effectiveCoords ? (
-            <div className={styles.notice}>
-              Using postal area for now. If you allow location, we’ll switch to your precise position automatically.
             </div>
           ) : null}
 
@@ -341,12 +331,14 @@ export default function BrowseHome({
               </button>
             </div>
             <div className={styles.mapWrap}>
-              <MapView
-                center={mapCenter}
-                recommendations={allRecommendations}
-                selectedPlaceId={selectedPlaceId}
-                onSelectPlace={setSelectedPlaceId}
-              />
+              {effectiveCoords ? (
+                <MapView
+                  center={[effectiveCoords.lat, effectiveCoords.lng]}
+                  recommendations={allRecommendations}
+                  selectedPlaceId={selectedPlaceId}
+                  onSelectPlace={setSelectedPlaceId}
+                />
+              ) : null}
             </div>
           </div>
         </div>
