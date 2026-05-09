@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.local
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Android secrets
+android/local.properties
+android/.gradle/
+android/app/release/
+android/**/*.keystore
+android/**/*.jks
+
+# iOS
+ios/.build/
+ios/Pods/
+ios/DerivedData/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# TypeScript
+*.tsbuildinfo

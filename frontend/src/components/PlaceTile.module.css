@@ -1,0 +1,122 @@
+.tile {
+  width: 260px;
+  min-width: 260px;
+  scroll-snap-align: start;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tile:hover {
+  border-color: rgba(200, 195, 185, 0.25);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.nameRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.nameRowActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.wishlistBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.wishlistBtnOn {
+  border-color: rgba(244, 114, 182, 0.5);
+  background: rgba(244, 114, 182, 0.12);
+  color: #f9a8d4;
+}
+
+.name {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.rating {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.reason {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  line-height: 1.35;
+  margin: 0;
+  min-height: 36px;
+}
+
+.mapsActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.btn {
+  min-height: 40px;
+  width: 100%;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.12s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btnPrimary {
+  border-color: rgba(180, 175, 165, 0.45);
+  background: rgba(165, 175, 190, 0.18);
+}
+
+.btnSecondary {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+}
+

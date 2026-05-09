@@ -1,0 +1,22 @@
+.badge {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.checking {
+  background: rgba(60, 60, 70, 0.85);
+  color: #d4d4d8;
+}
+
+.ok {
+  background: rgba(22, 101, 52, 0.85);
+  color: #bbf7d0;
+}
+
+.error {
+  background: rgba(127, 29, 29, 0.85);
+  color: #fecaca;
+}
