@@ -1,52 +1,133 @@
 # funmap
 
-> Discover places worth leaving home for. Scroll, find something you like, and go.
+<p align="center">
+  <b>Discover places worth leaving home for.</b><br/>
+  Scroll, find something you like, and go.
+</p>
 
-**funmap** is a personal local discovery app that recommends nearby places based on your taste, mood, time, and location. No more typing queries into a search box — just scroll, heart what looks good, and go.
+<p align="center">
+  <i>
+    funmap is a personal local discovery app that recommends nearby places based on your taste, mood, time, and location.
+    No more typing queries into a search box — just scroll, heart what looks good, and go.
+  </i>
+</p>
 
-> **Status:** Early MVP — the web prototype is fully functional. Native Android and iOS apps are in scaffold stage.
+<p align="center">
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#features">Features</a> •
+  <a href="#screenshots">Screenshots</a> •
+  <a href="#tech-stack">Tech Stack</a> •
+  <a href="#roadmap">Roadmap</a>
+</p>
+
+<p align="center">
+  <img alt="Status" src="https://img.shields.io/badge/status-early%20mvp-8A9A5B" />
+  <img alt="Frontend" src="https://img.shields.io/badge/frontend-react%20%2B%20vite-111827" />
+  <img alt="Backend" src="https://img.shields.io/badge/backend-node%20%2B%20express-111827" />
+  <img alt="Theme" src="https://img.shields.io/badge/theme-olive%20%2B%20dark-556B2F" />
+</p>
+
+<p align="center">
+  <b>Status:</b> Early MVP — the web prototype is fully functional. Native Android and iOS clients are planned.
+</p>
 
 ---
 
 ## What it does
 
-- **Personalized feed** — after a quick 2-step onboarding (pick activities you enjoy + time/drive preferences), the home screen shows horizontally scrollable rows of recommended places tailored to you.
-- **Location-aware** — works with your device GPS. If you decline location permission, just type your ZIP or postal code instead and the feed loads from there.
-- **Maps handoff** — tap **Google Maps** or **Apple Maps** on any place card to get turn-by-turn directions instantly.
+- **Personalized feed** — after quick onboarding (activities + time/drive preferences), the home screen shows horizontally scrollable recommendation rows tailored to you.
+- **Location-aware** — uses device GPS first. If location permission is denied, you can enter a ZIP code and continue.
+- **Maps handoff** — tap Drive on any place card to open directions immediately (Google Maps today; Apple Maps handoff planned).
 - **Wishlist** — heart any place to save it. View and manage saved places from the Wishlist tab.
-- **Bottom navigation** — Home and Wishlist tabs, always one tap away.
+- **Bottom navigation** — Home, Wishlist, and Profile are always one tap away.
 
 ---
 
-## Project layout
+## Why funmap
 
-```
+Most maps products are search-first.  
+**funmap is browse-first**: it gives you a taste-aware feed, lets you wishlist what you like, and moves you to navigation fast.
+
+---
+
+## Features
+
+- Mobile-first recommendation feed with horizontal place rails
+- GPS-first location, with ZIP fallback if permission is denied
+- Place details sheet with richer metadata and photos
+- One-tap drive handoff to Google Maps
+- Wishlist flow directly from place cards
+- Profile/preferences flow for personalization
+
+---
+
+## Screenshots
+
+<p align="center">
+  <b>1) Discover on Home</b> &nbsp;&nbsp;→&nbsp;&nbsp;
+  <b>2) Inspect Place Details</b> &nbsp;&nbsp;→&nbsp;&nbsp;
+  <b>3) Open Map View</b>
+</p>
+
+<p align="center">
+  <img src="./docs/screenshots/funmap-home.png" alt="Step 1 - FunMap Home" width="31%" />
+  <img src="./docs/screenshots/funmap-place-details.png" alt="Step 2 - FunMap Place Details" width="31%" />
+  <img src="./docs/screenshots/funmap-map-view.png" alt="Step 3 - FunMap Map View" width="31%" />
+</p>
+
+<p align="center">
+  <b>4) Save in Wishlist</b> &nbsp;&nbsp;→&nbsp;&nbsp;
+  <b>5) Review Profile Preferences</b>
+</p>
+
+<p align="center">
+  <img src="./docs/screenshots/funmap-wishlist.png" alt="Step 4 - FunMap Wishlist" width="31%" />
+  <img src="./docs/screenshots/funmap-profile.png" alt="Step 5 - FunMap Profile" width="31%" />
+</p>
+
+<p align="center"><i>User journey: Discover → Inspect → Navigate → Save → Personalize</i></p>
+
+---
+
+## Project Structure
+
+```text
 funmap/
-├── backend/      Node.js + Express API (recommendations, geocoding, security)
-├── frontend/     React web prototype (runs in any browser — not the shipping app)
-├── android/      Native Android app — Kotlin + Jetpack Compose (build in Android Studio)
-└── ios/          Native iOS app — Swift + SwiftUI (build in Xcode on a Mac)
+├── backend/   # Node.js + Express API
+├── frontend/  # React + Vite app (mobile-first UI)
+├── docs/      # Architecture + screenshots
+└── scripts/   # Utility scripts (screenshot capture, etc.)
 ```
-
-The **web prototype** (`frontend/`) is the fastest way to try the product. The **native apps** are the actual shipping targets per the product vision.
 
 ---
 
-## Quick start (web prototype)
+## Quick Start
 
 ### Prerequisites
 
-- [Node.js 20+](https://nodejs.org/) and npm
-- A terminal (macOS/Linux/WSL recommended; Windows PowerShell also works)
+- Node.js 22+ (see `.nvmrc`)
+- npm
+- Git
 
-### 1 — Clone the repo
+### Development platform notes (for contributors)
+
+- **macOS / Linux:** run directly in your terminal.
+- **Windows:** both are supported:
+  - PowerShell / Command Prompt (native Windows Node)
+  - WSL2 (recommended for smoother native-dependency behavior)
+- Pick **one environment per clone**. Avoid switching the same working copy between Windows Node and WSL Node.
+
+These notes are only about where developers run the code.  
+The product experience itself is mobile-first.
+
+### 1) Clone
 
 ```bash
 git clone https://github.com/K-bhuvan/funmap.git
 cd funmap
 ```
 
-### 2 — Start the backend
+### 2) Run backend
 
 ```bash
 cd backend
@@ -54,13 +135,9 @@ npm install
 npm run dev
 ```
 
-The API starts on **http://localhost:8080**. You should see:
+Backend: `http://localhost:8080`
 
-```
-AskMaps backend listening on http://localhost:8080
-```
-
-### 3 — Start the frontend (new terminal tab)
+### 3) Run frontend (new terminal)
 
 ```bash
 cd frontend
@@ -68,95 +145,75 @@ npm install
 npm run dev
 ```
 
-### 4 — Open in browser
+Frontend: `http://localhost:3000`
 
-Go to **http://localhost:3000**
+Vite proxies `/health` and `/v1` to backend `:8080`.
 
-The frontend automatically proxies API calls to the backend — no CORS setup needed.
+### Run on a phone (mobile web)
 
-### Try it on your phone (same Wi-Fi)
-
-```bash
-cd frontend
-npm run dev:lan
-```
-
-Vite will print a Network URL like `http://192.168.x.x:3000` — open that on your phone.
-
----
-
-## Backend environment variables
-
-The backend works out of the box for local development with no `.env` file needed. For customisation, copy `.env.example` to `.env`:
+From `frontend/`:
 
 ```bash
-cp backend/.env.example backend/.env
+npm run dev -- --host
 ```
 
-| Variable | Default | Description |
-|---|---|---|
-| `PORT` | `8080` | Port the API listens on |
-| `CORS_ORIGIN` | `http://localhost:3000` | Comma-separated allowed browser origins |
-| `NOMINATIM_USER_AGENT` | `AskMaps/0.1 (dev)` | User-Agent sent to OpenStreetMap's Nominatim geocoder. Set a real contact email for any non-local use ([OSM policy](https://operations.osmfoundation.org/policies/nominatim/)) |
-| `TRUST_PROXY` | _(unset)_ | Set to `1` when running behind a reverse proxy (nginx, Fly.io, etc.) |
+Then open the printed network URL (`http://<your-lan-ip>:3000`) on your phone (same Wi-Fi).
 
----
+### Optional (Windows + WSL only)
 
-## Build for production
+If native dependencies ever break (Rollup/esbuild), run:
 
 ```bash
-# Backend — compiles TypeScript to dist/
-cd backend && npm run build && npm start
-
-# Frontend — compiles TypeScript + bundles with Vite into dist/
-cd frontend && npm run build
+./scripts/wsl-bootstrap.sh
 ```
 
----
-
-## Native apps
-
-### Android
-
-See [`android/README.md`](android/README.md) for full setup.
-
-**Summary:**
-1. Open the `android/` folder in Android Studio.
-2. Copy `android/local.properties.example` → `android/local.properties`.
-3. Set `FUNMAP_BACKEND_URL=http://<your-local-ip>:8080` (use your machine's LAN IP, not `localhost`).
-4. Run on an emulator or physical device.
-
-### iOS
-
-See [`ios/README.md`](ios/README.md) for full setup.
-
-**Summary:**
-1. Install [XcodeGen](https://github.com/yonaskolb/XcodeGen): `brew install xcodegen`
-2. Inside the `ios/` folder, run `xcodegen generate`.
-3. Open the generated `.xcodeproj` in Xcode.
-4. Build and run on a simulator or device (Mac required).
+Reference setup guide: [docs/WSL.md](./docs/WSL.md)
 
 ---
 
-## Tech stack
+## Tech Stack
 
-| Layer | Tech |
-|---|---|
-| Web prototype | React 18, TypeScript, Vite, react-leaflet (OpenStreetMap) |
-| Backend API | Node.js, Express, TypeScript |
-| Security | helmet, cors, express-rate-limit |
-| Geocoding | OpenStreetMap Nominatim (postal code → lat/lng) |
-| Android | Kotlin, Jetpack Compose, Retrofit |
-| iOS | Swift, SwiftUI, URLSession |
+- **Frontend:** React 18, TypeScript, Vite
+- **Mapping UI:** Leaflet + react-leaflet
+- **Backend:** Node.js, Express, TypeScript
+- **Current data mode:** mock recommendations + ZIP/GPS context
+
+---
+
+## Current Status
+
+- ✅ Core UX flow is functional
+- ✅ Mobile aspect-ratio shell + bottom nav
+- ✅ Wishlist interactions and details panel
+- 🚧 Live Places/Routes provider integration (Google Maps) in progress
+- 🚧 Backend profile persistence (currently local storage on web)
+
+---
+
+## Roadmap
+
+- [ ] Google Places + Routes integration
+- [ ] Persistent profile/persona in backend
+- [ ] Better candidate diversity + ranking strategy
+- [ ] Native Android/iOS clients
+- [ ] Shareable trip cards + social loops
+
+---
+
+## Refresh Screenshots
+
+```bash
+node scripts/capture-screenshots.js
+```
 
 ---
 
 ## Disclaimers & acknowledgements
 
-- **Prototype quality:** The web frontend is a prototype for iterating on UX and API shape. It is not intended to be a production web app — the shipping targets are the native Android and iOS clients.
+- **Prototype quality:** The current product surface is a web MVP for fast iteration on UX and API shape.
 - **Mock data:** Recommendations are currently generated from a curated mock dataset. A real ML/LLM-powered recommendation engine is on the roadmap.
-- **Geocoding:** Postal code lookup uses [OpenStreetMap Nominatim](https://nominatim.openstreetmap.org/). Please respect the [OSM Nominatim Usage Policy](https://operations.osmfoundation.org/policies/nominatim/) — set a proper `NOMINATIM_USER_AGENT` with a contact address before any non-local deployment.
-- **Maps handoff:** "Open in Google Maps" and "Open in Apple Maps" launch the respective apps via deep link URLs. This project is not affiliated with, endorsed by, or sponsored by Google or Apple.
+- **Geocoding:** ZIP fallback currently uses `zippopotam.us` for postal code to lat/lng lookup.
+- **Maps handoff:** The current implementation opens Google Maps directions URLs. This project is not affiliated with, endorsed by, or sponsored by Google.
 - **Map tiles:** Map tiles in the web prototype are © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright), licensed under [ODbL](https://opendatacommons.org/licenses/odbl/).
 - **No warranty:** This project is provided as-is for personal and educational use. Use in production is at your own risk.
 
@@ -170,4 +227,4 @@ This is a personal MVP project. Issues and pull requests are welcome, but please
 
 ## License
 
-MIT — see [LICENSE](LICENSE) if present, otherwise consider the code freely usable for personal and educational purposes.
+MIT — see [LICENSE](./LICENSE).
