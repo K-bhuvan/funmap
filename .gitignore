@@ -46,10 +46,9 @@ yarn-error.log*
 # Internal strategy / skill docs (kept local only)
 PRD.md
 STEP_PLAN.md
-SYSTEM_ARCHITECTURE.md
 aesthetic.md
 first_principles_mobile_app.md
 security.md
 docs/STEP_*.md
 docs/README.md
-nfrontend/.vite/n
+frontend/.vite/
