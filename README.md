@@ -2,14 +2,7 @@
 
 <p align="center">
   <b>Discover places worth leaving home for.</b><br/>
-  Scroll, find something you like, and go.
-</p>
-
-<p align="center">
-  <i>
-    funmap is a personal local discovery app that recommends nearby places based on your taste, mood, time, and location.
-    No more typing queries into a search box — just scroll, heart what looks good, and go.
-  </i>
+  Scroll, save, and go in seconds.
 </p>
 
 <p align="center">
@@ -26,20 +19,6 @@
   <img alt="Backend" src="https://img.shields.io/badge/backend-node%20%2B%20express-111827" />
   <img alt="Theme" src="https://img.shields.io/badge/theme-olive%20%2B%20dark-556B2F" />
 </p>
-
-<p align="center">
-  <b>Status:</b> Early MVP — the web prototype is fully functional. Native Android and iOS clients are planned.
-</p>
-
----
-
-## What it does
-
-- **Personalized feed** — after quick onboarding (activities + time/drive preferences), the home screen shows horizontally scrollable recommendation rows tailored to you.
-- **Location-aware** — uses device GPS first. If location permission is denied, you can enter a ZIP code and continue.
-- **Maps handoff** — tap Drive on any place card to open directions immediately (Google Maps today; Apple Maps handoff planned).
-- **Wishlist** — heart any place to save it. View and manage saved places from the Wishlist tab.
-- **Bottom navigation** — Home, Wishlist, and Profile are always one tap away.
 
 ---
 
@@ -227,4 +206,4 @@ This is a personal MVP project. Issues and pull requests are welcome, but please
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+MIT (when `LICENSE` is added to repo root).
