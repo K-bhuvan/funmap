@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>Discover places worth leaving home for.</b><br/>
-  Scroll, save, and go in seconds.
+  Scroll, save, and go.
 </p>
 
 <p align="center">
